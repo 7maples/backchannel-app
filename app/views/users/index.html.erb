@@ -2,7 +2,7 @@
 
 <% if current_user %>
   <%= "Signed in!" %>
-  <%= link_to "Sign Out" %>
+  <%= link_to "Sign Out", "/signout", method: 'DELETE' %>
 <% else %>
   <%= link_to "Sign in with Twitter", "/auth/twitter" %>
 <% end %>

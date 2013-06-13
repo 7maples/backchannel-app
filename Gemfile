@@ -24,5 +24,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'sqlite3'
   gem 'dotenv-rails'
+  gem 'launchy'
 end
 
