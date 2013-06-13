@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  # validations -> drive this with tests
-  # dotenv gem
+  validates_presence_of :name, :nickname, :twitter_id, :image_url
+
 
   def self.create_or_find_from_omniauth(auth)
     where(:twitter_id => auth["uid"]).first || create_from_omniauth(auth)
