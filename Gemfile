@@ -26,5 +26,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'launchy'
   gem 'simplecov'
+  gem 'jasmine'
 end
 
