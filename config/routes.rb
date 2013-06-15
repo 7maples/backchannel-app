@@ -5,6 +5,8 @@ BackchannelApp::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :questions, only: :index
-  resources :schedules, only: :index
+  get '/:conference', to: 'conferences#show'
+
+  # resources :questions, only: :index
+  # resources :schedules, only: :index
 end
