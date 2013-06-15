@@ -6,5 +6,5 @@ BackchannelApp::Application.routes.draw do
   delete 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :questions, only: :index
-
+  resources :schedules, only: :index
 end
