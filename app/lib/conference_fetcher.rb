@@ -9,7 +9,7 @@ private
   def self.request(conference_slug)
     return nil if !conference_slug
 
-    response = Typhoeus.get(conferences_uri, body: { conference: conference_slug })
+    response = Typhoeus.get(conferences_uri(conference_slug))
 
     if response.code == 200
       OpenStruct.new(JSON.parse(response.body))
@@ -18,7 +18,7 @@ private
     end
   end
 
-  def self.conferences_uri
-    'http://backchannel-conferences.herokuapp.com/conferences'
+  def self.conferences_uri(conference_slug)
+    "http://localhost:3001/conferences/#{conference_slug}"
   end
 end
