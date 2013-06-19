@@ -28,5 +28,6 @@ group :development, :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'jasmine'
+  gem 'pry'
 end
 
