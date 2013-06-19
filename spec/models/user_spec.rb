@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe "New User" do
   before(:each) do
-    @user = User.new(name: 'john doe', nickname: 'johnny1',
-                       twitter_id: 1234, image_url: 'www.example.com')
+    @user = User.new(name: 'john doe',
+                     nickname: 'johnny1',
+                     twitter_id: 1234,
+                     image_url: 'www.example.com')
   end
 
   it "is valid with name, nickname, twitter_id and image_url" do
@@ -30,5 +32,3 @@ describe "New User" do
     expect(@user).to have(1).errors_on(:image_url)
   end
 end
-
-

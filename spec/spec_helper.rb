@@ -1,5 +1,4 @@
-require 'simplecov'
-SimpleCov.start
+require 'vcr'
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -13,3 +12,8 @@ RSpec.configure do |config|
 end
 
 OmniAuth.config.test_mode = true
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock
+end

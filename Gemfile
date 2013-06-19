@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'omniauth-twitter'
 gem 'sorcery'
-gem 'typhoeus'
+gem 'faraday'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,5 +29,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'jasmine'
   gem 'pry'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'vcr'
+  gem 'webmock'
 end
 

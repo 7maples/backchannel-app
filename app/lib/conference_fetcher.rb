@@ -9,10 +9,10 @@ private
   def self.request(conference_slug)
     return nil if !conference_slug
 
-    response = Typhoeus.get(conferences_uri(conference_slug))
+    response = Faraday.get(conferences_uri(conference_slug))
 
-    if response.code == 200
-      OpenStruct.new(JSON.parse(response.body))
+    if response.status == 200
+      JSON.parse(response.body)
     else
       nil
     end

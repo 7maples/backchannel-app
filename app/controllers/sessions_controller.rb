@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
     user = User.create_or_find_from_omniauth(env["omniauth.auth"])
     auto_login(user)
 
-    redirect_to root_url, notice: "Signed in!"
+    redirect_to :back, notice: "Signed in!"
   end
 
   def destroy
     logout
-    redirect_to root_url, notice: "Signed out!"
+    redirect_to :back, notice: "Signed out!"
   end
 end
