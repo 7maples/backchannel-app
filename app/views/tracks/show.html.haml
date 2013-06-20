@@ -11,6 +11,10 @@
 
 :javascript
   $(function(){
+    var client = new Faye.Client('http://localhost:9292/faye'), 
+      subscription = client.subscribe("/tracks/#{@track['id']}", function(data){
+        alert(data);
+      });
 
     $("#post").click(function(){
       var message = $("#body").val()
