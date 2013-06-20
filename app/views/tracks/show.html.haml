@@ -6,9 +6,8 @@
     %ul.chat{"data-id" => "#{@track['id']}"}
       = render partial: 'message', collection: @messages
 
-    %form.form-inline
-      %input.span5#body{:type => "text", :placeholder => "Type your message here"}
-      %button.btn#post{:type => "submit"} Send
+    %input.span5#body{:type => "text", :placeholder => "Type your message here"}
+    %button.btn#post Send
 
 :javascript
   $(function(){
@@ -20,8 +19,8 @@
         type: "POST",
         url:  "/#{@conference_slug}/#{@track['id']}/messages",
         data: {body: message},
-        success: "success",
-        dataType: "json"
+        dataType: "json",
+        success: "success"
       });
 
     });
