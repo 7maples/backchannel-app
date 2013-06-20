@@ -12,18 +12,35 @@
 :javascript
   $(function(){
 
-    $("#post").click(function(){
-      var message = $("#body").val()
+    var client = new Faye.Client('http://localhost:9292/faye');
+
+    client.subscribe('/tracks/1', function (data) {
+      $.ajax({
+        type: 'GET',
+        url: '/users/' + data.text.user_id,
+        success: function (response) {
+          console.log(response);
+          $('.chat').append('<li>' + response.nickname + ' says: ' + data.text.body + '</li>')
+        }
+      })
+    });
+
+    $("#post").click(function() {
+      var $body = $("#body"),
+          message = $body.val();
+
+      $body.val('');
 
       $.ajax({
         type: "POST",
         url:  "/#{@conference_slug}/#{@track['id']}/messages",
         data: {body: message},
         dataType: "json",
-        success: "success"
+        success: function (response) {
+        },
+        error: function (error) {
+        }
       });
 
     });
   });
-
-/ # = subscribe_to "/tracks/#{@track['id']}}"

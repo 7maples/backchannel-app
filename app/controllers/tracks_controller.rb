@@ -6,6 +6,7 @@ class TracksController < ApplicationController
     @track = ConferenceFetcher.get_track(params[:track_id])
     @conference_slug = params[:conference]
     @messages = MessageFetcher.for_tracks(params[:track_id])
+    # return hash of users based on the unique user_ids in @messages
   end
 
   private
