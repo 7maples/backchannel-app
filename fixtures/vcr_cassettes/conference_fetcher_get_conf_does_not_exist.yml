@@ -12,31 +12,31 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - '*/*'
   response:
     status:
       code: 400
-      message: ! 'Bad Request '
+      message: 'Bad Request '
     headers:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - facd743c812150183499533153981054
+      - 0284f64428cd1abad87793a48efb39a4
       X-Runtime:
-      - '0.001947'
+      - '0.002709'
       Server:
-      - WEBrick/1.3.1 (Ruby/1.9.3/2013-02-22)
+      - WEBrick/1.3.1 (Ruby/2.0.0/2013-05-14)
       Date:
-      - Thu, 20 Jun 2013 16:37:17 GMT
+      - Thu, 20 Jun 2013 21:38:34 GMT
       Content-Length:
       - '4'
       Connection:
       - Keep-Alive
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Thu, 20 Jun 2013 16:37:17 GMT
+  recorded_at: Thu, 20 Jun 2013 21:38:34 GMT
 recorded_with: VCR 2.5.0

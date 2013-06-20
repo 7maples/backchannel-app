@@ -7,6 +7,7 @@ gem 'omniauth-twitter'
 gem 'sorcery'
 gem 'faraday'
 gem 'haml-rails'
+gem 'backchannel-scheduler-gem', :git => 'https://github.com/philbattos/backchannel-scheduler-gem.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -34,7 +35,7 @@ group :development, :test do
   gem 'vcr'
 end
 
-group :test do 
+group :test do
   gem 'webmock'
 end
 
