@@ -4,8 +4,8 @@
     %ul.chat{"data-id" => "#{@track['id']}"}
       = render partial: 'message', collection: @messages
 
-    = form_tag :url => track_messages_path(@conference_slug, @track['id']), :html => {:class => "form-inline"}, remote: true do
-      = text_field_tag :content, {:class => "span5", :placeholder => "Type your message here"}
-      = submit_tag "Send", :class => "btn"
+    -# = form_tag :url => track_messages_path(@conference_slug, @track['id']), :html => {:class => "form-inline"}, remote: true do
+    -#   = text_field_tag :content, {:class => "span5", :placeholder => "Type your message here"}
+    -#   = submit_tag "Send", :class => "btn"
 
 / # = subscribe_to "/tracks/#{@track['id']}}"
