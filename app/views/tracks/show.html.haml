@@ -1,11 +1,32 @@
-%h4 Welcome to the BackChannel for the track id: #{@track['title']}
+%h3 Welcome to the BackChannel for the #{@track['title']} track
+%br
 .row
   .span6
+    %h4 Track Chat
     %ul.chat{"data-id" => "#{@track['id']}"}
       = render partial: 'message', collection: @messages
 
-    -# = form_tag :url => track_messages_path(@conference_slug, @track['id']), :html => {:class => "form-inline"}, remote: true do
-    -#   = text_field_tag :content, {:class => "span5", :placeholder => "Type your message here"}
-    -#   = submit_tag "Send", :class => "btn"
+    %form.form-inline
+      %input.span5#body{:type => "text", :placeholder => "Type your message here"}
+      %button.btn#post{:type => "submit"} Send
+
+:javascript
+  $(function(){
+    console.log("I'm ready!")
+
+    $("#post").click(function(){
+      var message = $("#body").val()
+      console.log("I got clicked!!!, sending message: " + message)
+
+      $.ajax({
+        type: "POST",
+        url:  "/#{@conference_slug}/#{@track['id']}/messages",
+        data: message,
+        success: "success",
+        dataType: "json"
+      });
+
+    });
+  });
 
 / # = subscribe_to "/tracks/#{@track['id']}}"

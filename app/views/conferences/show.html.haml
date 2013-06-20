@@ -1,0 +1,12 @@
+%h1= @conference['name']
+
+%h3 Schedule and Tracks
+
+%h4 Tracks
+
+%ul
+ - @conference["tracks"].each do |track|
+  %li= link_to track["title"], conference_track_path(@conference["slug"], track["id"])
+
+
+
