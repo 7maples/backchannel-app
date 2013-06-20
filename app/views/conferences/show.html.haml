@@ -2,11 +2,26 @@
 
 %h3 Schedule and Tracks
 
-%h4 Tracks
+.row
+  .span8
+    - @conference["tracks"].each do |track|
+      %h4
+        =link_to track["title"], conference_track_path(@conference["slug"], track["id"])
 
-%ul
- - @conference["tracks"].each do |track|
-  %li= link_to track["title"], conference_track_path(@conference["slug"], track["id"])
+      %table.table-bordered.table-striped
+        %thead
+          %tr
+            %th.span3 Session
+            %th.span2 Details
+            %th.span2 Location
+        %tbody
+          - track["sessions"].each do |session|
+            %tr
+              %td= session["title"]
+              %td= session["speaker"]
+              %td= session["location"]
 
-
+-# %ul
+-#  - @conference["tracks"].each do |track|
+-#   %li= link_to track["title"], conference_track_path(@conference["slug"], track["id"])
 
