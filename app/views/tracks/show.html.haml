@@ -19,7 +19,7 @@
       $.ajax({
         type: "POST",
         url:  "/#{@conference_slug}/#{@track['id']}/messages",
-        data: message,
+        data: {body: message},
         success: "success",
         dataType: "json"
       });
