@@ -1,0 +1,11 @@
+%h4 Welcome to the BackChannel for the #{@track.name} Track
+.row
+  .span6
+    -# %ul#chat{"data-id" => "#{@track.id}"}
+    -#   = render @messages
+
+    -# = form_for Message.new, :url => track_messages_path(@track), :html => {:class => "form-inline"}, remote: true do |f|
+    -#   = f.text_field :content, {:class => "span5", :placeholder => "Type your message here"}
+    -#   = f.submit "Send", :class => "btn"
+
+= subscribe_to "/tracks/#{@track.id}"
