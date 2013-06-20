@@ -12,11 +12,9 @@
 
 :javascript
   $(function(){
-    console.log("I'm ready!")
 
     $("#post").click(function(){
       var message = $("#body").val()
-      console.log("I got clicked!!!, sending message: " + message)
 
       $.ajax({
         type: "POST",
