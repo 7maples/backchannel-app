@@ -1,17 +1,17 @@
 <h1>Schedule and Tracks</h1>
 
-<%= @conference['conference']['name'] %>
+<%= @conference['name'] %>
 
 <br>
 <h4> Tracks </h4>
 <ul>
-<% @conference["conference"]["tracks"].each do |track| %>
-  <li> <%= link_to track["track"]["title"], conference_track_path("goruco-2001", track["track"]["id"]) %> </li>
+<% @conference["tracks"].each do |track| %>
+  <li> <%= link_to track["title"], conference_track_path(@conference["slug"], track["id"]) %> </li>
 <% end %>
 </ul>
 
 <%# <table class="table table-hover"> %>
-<%#   <%= @conference['conference']['name'] %1> %>
+<%#   <%= @conference['name'] %1> %>
 <%#   <tr> %>
 <%#     <th>Monday</th> %>
 <%#     <th>Tuesday</th> %>

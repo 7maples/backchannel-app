@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "Chatting within a track's chat room" do
 
   before do
-    MessageFetcher.stub(:for_tracks).and_return('messages' => [{'id' => 1,
-                                                                'body' => "yo",
-                                                                'track_id' => 1,
-                                                                'user_id' => 1,
-                                                                'created_at' => Time.now,
-                                                                'updated_at' => Time.now}])
+    MessageFetcher.stub(:for_tracks).and_return([{'id' => 1,
+                                                  'body' => "yo",
+                                                  'track_id' => 1,
+                                                  'user_id' => 1,
+                                                  'created_at' => Time.now,
+                                                  'updated_at' => Time.now}])
   end
 
   it "Displays a chat when user submits message" do

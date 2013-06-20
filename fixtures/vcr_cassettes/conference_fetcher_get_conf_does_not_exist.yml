@@ -23,13 +23,13 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 28491d01acb7da3c1ccc3a33ec124a00
+      - 57815a11541e5c66390302b11ac4f69e
       X-Runtime:
-      - '0.002138'
+      - '0.002054'
       Server:
       - WEBrick/1.3.1 (Ruby/2.0.0/2013-02-24)
       Date:
-      - Thu, 20 Jun 2013 04:11:05 GMT
+      - Thu, 20 Jun 2013 04:39:22 GMT
       Content-Length:
       - '4'
       Connection:
@@ -38,5 +38,5 @@ http_interactions:
       encoding: UTF-8
       string: 'null'
     http_version: 
-  recorded_at: Thu, 20 Jun 2013 04:11:05 GMT
+  recorded_at: Thu, 20 Jun 2013 04:39:22 GMT
 recorded_with: VCR 2.5.0
