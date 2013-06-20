@@ -1,0 +1,8 @@
+= link_to "Backchannel", "#", :class => 'brand'
+%ul.nav
+  - if current_user
+    %li
+      = link_to('Sign Out', "/signout", :method=>'delete')
+  - else
+    %li
+      = link_to('Sign in with Twitter', "/auth/twitter")

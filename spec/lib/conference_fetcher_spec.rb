@@ -5,8 +5,8 @@ describe ConferenceFetcher do
     context 'the conference name exists' do
       it 'returns conference name' do
         VCR.use_cassette('conference fetcher get conf') do
-          conference_details = ConferenceFetcher.get('ruby-conf-2011')
-          expect(conference_details['conference']['name']).to eq 'Ruby Conference 2011'
+          conference = ConferenceFetcher.get('ruby-conf-2011')
+          expect(conference['name']).to eq 'Ruby Conference 2011'
         end
       end
     end

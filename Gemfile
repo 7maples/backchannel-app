@@ -6,11 +6,12 @@ gem 'pg'
 gem 'omniauth-twitter'
 gem 'sorcery'
 gem 'faraday'
+gem 'haml-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass-rails', '~> 2.3.1.0'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -31,6 +32,9 @@ group :development, :test do
   gem 'pry'
   gem "factory_girl_rails", "~> 4.0"
   gem 'vcr'
+end
+
+group :test do 
   gem 'webmock'
 end
 

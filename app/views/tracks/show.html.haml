@@ -1,0 +1,29 @@
+%h3 Welcome to the BackChannel for the #{@track['title']} track
+%br
+.row
+  .span6
+    %h4 Track Chat
+    %ul.chat{"data-id" => "#{@track['id']}"}
+      = render partial: 'message', collection: @messages
+
+    %input.span5#body{:type => "text", :placeholder => "Type your message here"}
+    %button.btn#post Send
+
+:javascript
+  $(function(){
+
+    $("#post").click(function(){
+      var message = $("#body").val()
+
+      $.ajax({
+        type: "POST",
+        url:  "/#{@conference_slug}/#{@track['id']}/messages",
+        data: {body: message},
+        dataType: "json",
+        success: "success"
+      });
+
+    });
+  });
+
+/ # = subscribe_to "/tracks/#{@track['id']}}"
