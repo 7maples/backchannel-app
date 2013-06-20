@@ -14,7 +14,6 @@ describe "Chatting within a track's chat room" do
   it "Displays a chat when user submits message" do
     VCR.use_cassette('user submits message') do
       visit conference_track_path('ruby-conf-2011', 1)
-      save_and_open_page
       within ".chat" do
         expect(page).to have_content("yo")
       end

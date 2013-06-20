@@ -1,11 +1,11 @@
-%h4 Welcome to the BackChannel for the track id: #{@messages['messages'].first['track_id']}
+%h4 Welcome to the BackChannel for the track id: #{@track['title']}
 .row
   .span6
-    %ul.chat{"data-id" => "#{@messages['messages'].first['track_id']}"}
+    %ul.chat{"data-id" => "#{@track['id']}"}
       = render partial: 'message', collection: @messages['messages']
 
-    / = form_tag :url => track_messages_path(@messages['messages'].first['track_id']), :html => {:class => "form-inline"}, remote: true do
+    / = form_tag :url => track_messages_path(@track['id']), :html => {:class => "form-inline"}, remote: true do
     /   = text_field_tag :content, {:class => "span5", :placeholder => "Type your message here"}
     /   = submit_tag "Send", :class => "btn"
 
-/ # = subscribe_to "/tracks/#{@messages['messages'].first['track_id']}}"
+/ # = subscribe_to "/tracks/#{@track['id']}}"
