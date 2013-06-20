@@ -11,10 +11,12 @@ describe MessagesController do
 
     describe "with valid credentials" do
       it "should return a 201 status" do
-        post :create, { body: "Hello people",
-                        track_id: 1}
+        VCR.use_cassette('POST messages#create, valid request') do
+          post :create, { body: "Hello people",
+                          track_id: 1}
 
-        expect(response.status).to eq 201
+          expect(response.status).to eq 201
+        end
       end
     end
   end
