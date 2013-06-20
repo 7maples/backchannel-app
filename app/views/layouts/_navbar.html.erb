@@ -1,0 +1,12 @@
+<%= link_to "Backchannel", "#", :class => 'brand' %>
+<ul class="nav">
+  <% if current_user %>
+    <li>
+    <%= link_to('Sign Out', "/signout", :method=>'delete') %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to('Sign in with Twitter', "/auth/twitter")  %>
+    </li>
+  <% end %>
+</ul>
