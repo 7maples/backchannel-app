@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/philbattos/backchannel-scheduler-gem.git
+  revision: 1afd9aab42d56e6ef6567d301fc1ded9ce677b87
+  specs:
+    backchannel-scheduler-gem (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -241,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  backchannel-scheduler-gem!
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.2.0)

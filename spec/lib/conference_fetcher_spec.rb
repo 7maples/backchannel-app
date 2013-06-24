@@ -1,4 +1,5 @@
 require 'spec_helper'
+ConferenceFetcher = Backchannel::Scheduler::Gem::ConferenceFetcher
 
 describe ConferenceFetcher do
   describe '.get' do
