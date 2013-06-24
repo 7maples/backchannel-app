@@ -22,11 +22,11 @@ private
   def self.post_request(data)
     response = Faraday.post(create_message_uri(data))
 
-    # if response.status == 201
-    #   JSON.parse(response.body)
-    # else
-    #   nil
-    # end
+    if response.status == 201
+      JSON.parse(response.body)
+    else
+      nil
+    end
   end
 
   def self.track_messages_uri(track_id)

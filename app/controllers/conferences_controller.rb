@@ -1,6 +1,10 @@
 class ConferencesController < ApplicationController
   ConferenceFetcher = Backchannel::Scheduler::Gem::ConferenceFetcher
-  before_filter :set_session, only: :show
+  before_filter :set_session
+
+  def index
+    render nothing: true
+  end
 
   def show
     @conference = ConferenceFetcher.get(params[:conference])

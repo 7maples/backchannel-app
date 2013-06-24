@@ -7,5 +7,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def not_authenticated
+    redirect_to session[:next_page] || root_path
+  end
 end

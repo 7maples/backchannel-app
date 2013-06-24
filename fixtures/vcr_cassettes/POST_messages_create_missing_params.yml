@@ -1,14 +1,16 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:3001/conferences/ruby-conf-nevah
+    method: post
+    uri: http://localhost:3002/api/messages?message%5Bbody%5D=Hello%20people&message%5Btrack_id%5D=&message%5Buser_id%5D=342
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     headers:
       User-Agent:
       - Faraday v0.8.7
+      Content-Length:
+      - '0'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -16,27 +18,23 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 'Bad Request '
+      message: Bad Request
     headers:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 8a6e3a5b9d2bc725bf425e095262d184
+      - 8b13e7d9cfbd704ed0292e82690f6056
       X-Runtime:
-      - '0.002232'
-      Server:
-      - WEBrick/1.3.1 (Ruby/2.0.0/2013-02-24)
-      Date:
-      - Mon, 24 Jun 2013 04:28:24 GMT
-      Content-Length:
-      - '4'
+      - '0.004136'
       Connection:
-      - Keep-Alive
+      - close
+      Server:
+      - thin 1.5.1 codename Straight Razor
     body:
       encoding: UTF-8
-      string: 'null'
+      string: '{"error":{"track_id":["can''t be blank"]}}'
     http_version: 
   recorded_at: Mon, 24 Jun 2013 04:28:24 GMT
 recorded_with: VCR 2.5.0
