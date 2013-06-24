@@ -7,5 +7,3 @@ describe TracksController do
   end
 
 end
-
-

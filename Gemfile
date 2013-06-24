@@ -31,6 +31,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'jasmine'
   gem 'pry'
+  gem 'guard'
   gem "factory_girl_rails", "~> 4.0"
   gem 'vcr'
 end

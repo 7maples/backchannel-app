@@ -1,27 +1,33 @@
-%h3 Welcome to the BackChannel for the #{@track['title']} track
+%h3 Welcome to the BackChannel for the #{@track_show.track['title']} track
 %br
 .row
   .span6
     %h4 Track Chat
-    %ul.chat{"data-id" => "#{@track['id']}"}
-      = render partial: 'message', collection: @messages
+    %ul.chat{"data-id" => "#{@track_show.track['id']}"}
+      = render partial: 'message', collection: @track_show.messages
 
     %input.span5#body{:type => "text", :placeholder => "Type your message here"}
     %button.btn#post Send
 
 :javascript
   $(function(){
+    console.log("#{@track_show.users.to_json}")
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    client.subscribe('/tracks/1', function (data) {
-      $.ajax({
-        type: 'GET',
-        url: '/users/' + data.text.user_id,
-        success: function (response) {
-          console.log(response);
-          $('.chat').append('<li>' + response.nickname + ' says: ' + data.text.body + '</li>')
-        }
-      })
+    client.subscribe("/tracks/#{@track_show.track['id']}", function (data) {
+
+      if ($.inArray(data.text.user_id, [])) {
+        $('.chat').append('<li>' + 'stub' + ' says: ' + data.text.body + '</li>')
+      } else {
+        $.ajax({
+          type: 'GET',
+          url: '/users/' + data.text.user_id,
+          success: function (response) {
+            console.log(response);
+            $('.chat').append('<li>' + response.nickname + ' says: ' + data.text.body + '</li>')
+          }
+        })
+      };
     });
 
     $("#post").click(function() {
@@ -32,7 +38,7 @@
 
       $.ajax({
         type: "POST",
-        url:  "/#{@conference_slug}/#{@track['id']}/messages",
+        url:  "/#{@conference_slug}/#{@track_show.track['id']}/messages",
         data: {body: message},
         dataType: "json",
         success: function (response) {
