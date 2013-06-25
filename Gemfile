@@ -30,6 +30,9 @@ group :development, :test do
   gem 'jasmine'
   gem 'pry'
   gem "factory_girl_rails", "~> 4.0"
+end
+
+group :test do
   gem 'vcr'
   gem 'webmock'
 end
