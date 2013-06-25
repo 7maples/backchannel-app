@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://localhost:3002/api/messages?message%5Bbody%5D=Hello%20people&message%5Btrack_id%5D=&message%5Buser_id%5D=342
+    uri: http://localhost:3002/api/messages?message%5Bbody%5D=Hello%20people&message%5Btrack_id%5D=&message%5Buser_id%5D=15
     body:
       encoding: UTF-8
       string: ''
@@ -25,9 +25,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 8b13e7d9cfbd704ed0292e82690f6056
+      - 31e81c2ecf740a72294d7e97048258d6
       X-Runtime:
-      - '0.004136'
+      - '0.109530'
       Connection:
       - close
       Server:
@@ -36,5 +36,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":{"track_id":["can''t be blank"]}}'
     http_version: 
-  recorded_at: Mon, 24 Jun 2013 04:28:24 GMT
+  recorded_at: Tue, 25 Jun 2013 20:11:56 GMT
 recorded_with: VCR 2.5.0
