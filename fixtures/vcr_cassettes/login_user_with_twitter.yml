@@ -21,28 +21,28 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"6475705e21e7c6c91ee07cfd7f6a46d3"'
+      - '"01aec61eb8fdbef456b48b8af98fc5f3"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c62beed5964f303a7cbe719373a18499
+      - bd34029512cedd773598cc80b5647983
       X-Runtime:
-      - '0.005401'
+      - '0.004884'
       Server:
-      - WEBrick/1.3.1 (Ruby/2.0.0/2013-05-14)
+      - WEBrick/1.3.1 (Ruby/2.0.0/2013-02-24)
       Date:
-      - Wed, 19 Jun 2013 21:13:48 GMT
+      - Mon, 24 Jun 2013 04:28:24 GMT
       Content-Length:
-      - '468'
+      - '443'
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: '{"conference":{"created_at":"2013-06-19T20:48:22Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
-        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-19T20:48:22Z","tracks":[{"track":{"conference_id":2,"created_at":"2013-06-19T20:48:22Z","description":"Presentations
-        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-19T20:48:22Z","sessions":[]}}]}}'
+      string: '{"created_at":"2013-06-20T03:45:48Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
+        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-20T03:45:48Z","tracks":[{"conference_id":2,"created_at":"2013-06-20T03:45:48Z","description":"Presentations
+        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-20T03:45:48Z","sessions":[]}]}'
     http_version: 
-  recorded_at: Wed, 19 Jun 2013 21:13:48 GMT
+  recorded_at: Mon, 24 Jun 2013 04:28:24 GMT
 - request:
     method: get
     uri: http://localhost:3001/conferences/ruby-conf-2011
@@ -64,26 +64,26 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"6475705e21e7c6c91ee07cfd7f6a46d3"'
+      - '"01aec61eb8fdbef456b48b8af98fc5f3"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2cb0ef06b2ae651c922ad3fa7c45de41
+      - 58994adf84bbf2a468efcce64a7d9731
       X-Runtime:
-      - '0.006383'
+      - '0.005076'
       Server:
-      - WEBrick/1.3.1 (Ruby/2.0.0/2013-05-14)
+      - WEBrick/1.3.1 (Ruby/2.0.0/2013-02-24)
       Date:
-      - Wed, 19 Jun 2013 21:13:48 GMT
+      - Mon, 24 Jun 2013 04:28:24 GMT
       Content-Length:
-      - '468'
+      - '443'
       Connection:
       - Keep-Alive
     body:
       encoding: UTF-8
-      string: '{"conference":{"created_at":"2013-06-19T20:48:22Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
-        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-19T20:48:22Z","tracks":[{"track":{"conference_id":2,"created_at":"2013-06-19T20:48:22Z","description":"Presentations
-        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-19T20:48:22Z","sessions":[]}}]}}'
+      string: '{"created_at":"2013-06-20T03:45:48Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
+        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-20T03:45:48Z","tracks":[{"conference_id":2,"created_at":"2013-06-20T03:45:48Z","description":"Presentations
+        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-20T03:45:48Z","sessions":[]}]}'
     http_version: 
-  recorded_at: Wed, 19 Jun 2013 21:13:48 GMT
+  recorded_at: Mon, 24 Jun 2013 04:28:24 GMT
 recorded_with: VCR 2.5.0

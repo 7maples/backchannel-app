@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     user = User.create_or_find_from_omniauth(env["omniauth.auth"])
     auto_login(user)
 
-    redirect_to :back, notice: "Signed in!"
+    redirect_to session[:next_page], notice: "Signed in!"
   end
 
   def destroy
