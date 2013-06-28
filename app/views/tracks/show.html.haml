@@ -3,7 +3,7 @@
 .row
   .span6
     %h4 Track Chat
-    %ul.chat{"data-id" => "#{@track_show.track['id']}"}
+    %ul.chat{"data-id" => "#{@track_show.track_id}"}
       = render partial: 'message', collection: @track_show.messages
 
     %input.span5#body{:type => "text", :placeholder => "Type your message here"}
@@ -11,20 +11,24 @@
 
 :javascript
   $(function(){
-    console.log("#{@track_show.users.to_json}")
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    client.subscribe("/tracks/#{@track_show.track['id']}", function (data) {
+    client.subscribe("/tracks/#{@track_show.track_id}", function (data) {
 
-      if ($.inArray(data.text.user_id, [])) {
-        $('.chat').append('<li>' + 'stub' + ' says: ' + data.text.body + '</li>')
+      var userIds = gon.track_show.user_ids,
+          users = gon.track_show.users, 
+          chatUserId = data.text.user_id;
+
+      if ($.inArray(chatUserId, userIds) !== -1) {
+        console.log("found the user");
+        $('.chat').append('<li>' + "<img src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-            console.log(response);
-            $('.chat').append('<li>' + response.nickname + ' says: ' + data.text.body + '</li>')
+            console.log("making a get request");
+            $('.chat').append('<li>' + "<img src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
           }
         })
       };
@@ -36,9 +40,10 @@
 
       $body.val('');
 
+      console.log("posting message")
       $.ajax({
         type: "POST",
-        url:  "/#{@conference_slug}/#{@track_show.track['id']}/messages",
+        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/messages",
         data: {body: message},
         dataType: "json",
         success: function (response) {

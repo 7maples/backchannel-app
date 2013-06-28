@@ -1,5 +1,4 @@
 class ConferencesController < ApplicationController
-  ConferenceFetcher = Backchannel::Scheduler::Gem::ConferenceFetcher
   before_filter :set_session
 
   def index
@@ -7,7 +6,7 @@ class ConferencesController < ApplicationController
   end
 
   def show
-    @conference = ConferenceFetcher.get(params[:conference])
+    @conference = ConferenceFetcher.get_conference(params[:conference])
     render :status => 404 if @conference.nil?
   end
 

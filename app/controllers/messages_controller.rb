@@ -3,7 +3,6 @@ class MessagesController < ApplicationController
 
   def create
     message = MessageFetcher.create_message(params.merge(user_id: current_user.id))
-
     if message
       render json: message, status: 201
     else
