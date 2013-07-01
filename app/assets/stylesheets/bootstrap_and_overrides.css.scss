@@ -1,18 +1,161 @@
-@import "bootstrap";
 body { padding-top: 60px; }
 
 
-ul.chat {
-  border: 1px solid #e1e1e8;
-  list-style-type: none;
-  margin: 0 0 10px;
-  padding: 5px 4px 5px;
-  min-height: 100px;
-}
+// ul.chat {
+//   border: 1px solid #e1e1e8;
+//   list-style-type: none;
+//   margin: 0 0 10px;
+//   padding: 5px 4px 5px;
+//   min-height: 100px;
+// }
 
 table {
   margin-bottom: 25px;
 }
 
+.days {
+  border-bottom: 2px solid #fff;
+  margin: 0 0 20px 0;
+  padding-bottom: 5px;
+  padding-left: 20%;
+  min-height: 23px;
 
+  ul {
+    margin: 0;
+    padding: 0; 
 
+    li {
+      float: left;
+      list-style: none; 
+
+      a {
+        text-decoration: none;
+        margin: 0 6px 0 0;
+        font-size: 23px;
+        padding: 10px 10px 5px 10px;
+        background: #333;
+        color: #d1eaeb;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      a.current {
+        background: #ab1004;
+        color: #fff; 
+      }
+    }
+  }
+}
+
+.rowadjust {
+  margin-left: 0;
+}
+.timeslot {
+  float: left;
+  text-align: right;
+  margin: 10px 0 0 0;
+  font-size: 29px;
+  clear: left;
+  background: #fff;
+  width: 20%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  h3 {
+    font-size: 28px;
+    margin: 10px 5px 0 5px;
+  }
+
+  p {
+    color: #000;
+    font-size: 18px; 
+    margin: 0 5px 10px 5px;
+  }
+}
+
+.talkgroup {
+  float: left;
+  margin-bottom: 20px;
+  width: 80%;
+
+  .slot {
+    width: 19.6%;
+    margin: 0 2px 2px 0;
+    height: 180px;
+    overflow: hidden; 
+    float: left;
+    text-align: left;
+    background: #fff;
+
+    h4 {
+      font: Verdana, Arial, sans-serif;
+      font-size: 12px;
+      color: #777;
+      font-weight: bold;
+      text-transform: uppercase;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding: 8px 0 5px 0;
+      border-bottom: 1px solid #e4e4d0; 
+      background: linear-gradient(to bottom, #fff 0%, #fdfdfb 14%, #f2f2e7 71%);
+    }
+
+    h5 {
+      font: Helvetica, Verdana, Arial, sans-serif;
+      color: #b81004;
+      font-weight: bold;
+      margin: 10px 10px 0 10px;
+    }
+
+    p {
+      margin: 3px 10px 10px 10px;
+      color: #666665; 
+    }
+  }
+}
+
+section {
+  margin-top: 30px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-top: 30px;
+  padding: 19px;
+  border: 1px solid #d8d8d8;
+  background-color: #fff;
+  border-top-width: 2px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+ul.chat {
+  border: 1px solid #ebebeb;
+  width: 80%;
+  list-style-type: none;
+  margin: 0 0 10px;
+  padding: 5px 4px 5px;
+  min-height: 100px;
+
+  img {
+    width: 60px;
+    height: 60px; 
+  }
+
+  li {
+    border-bottom: 1px solid #ebebeb;
+    padding: 5px 0px 5px 5px;
+  }
+}
+
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+
+  .container {
+    .credit {
+      margin: 20px 0;
+    }
+  }
+}

@@ -1,10 +1,15 @@
-%h3 Welcome to the BackChannel for the #{@track_show.track['title']} track
-%br
-.row
-  .span6
-    %h4 Track Chat
-    %ul.chat{"data-id" => "#{@track_show.track_id}"}
-      = render partial: 'message', collection: @track_show.messages
+%h3 #{@track_show.track['title']}'s backchannel
+.row.rowadjust
+  .span12
+    %section
+      %ul.nav.nav-pills
+        %li.active
+          %a{:href => "#"} Chat
+        %li
+          %a{:href => "#"} Questions
+
+      %ul.chat{"data-id" => "#{@track_show.track_id}"}
+        = render partial: 'message', collection: @track_show.messages
 
     %input.span5#body{:type => "text", :placeholder => "Type your message here"}
     %button.btn#post Send
@@ -20,15 +25,14 @@
           chatUserId = data.text.user_id;
 
       if ($.inArray(chatUserId, userIds) !== -1) {
-        console.log("found the user");
-        $('.chat').append('<li>' + "<img src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
+        $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
             console.log("making a get request");
-            $('.chat').append('<li>' + "<img src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
+            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
           }
         })
       };
@@ -40,7 +44,6 @@
 
       $body.val('');
 
-      console.log("posting message")
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/messages",
