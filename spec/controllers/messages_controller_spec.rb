@@ -20,16 +20,6 @@ describe MessagesController do
           expect(response.body).to eq(message_fetcher_response.to_json)
         end
       end
-
-      context 'message creation failed' do
-        it "should return a 404 status" do
-          VCR.use_cassette('POST messages#create missing params') do
-            post :create, { body: "Hello people"}
-
-            expect(response.status).to eq 404
-          end
-        end
-      end
     end
 
     describe "not logged in" do
