@@ -12,29 +12,8 @@
 
     .span6
       %h3 Questions
-      %ul.questions
-        %li
-          .question-container
-            .question
-              %h3 Which refactoring technique do think is the most versatile?
-              %span.badge.badge-inverse 12 votes
-            .asker-info
-              .img-container
-                %img.img-circle
-
-              %p kareemgrant
-              %button.btn.pull-right vote
-        %li
-          .question-container
-            .question
-              %h3 Which refactoring technique do think is the most versatile?
-              %span.badge.badge-inverse 12 votes
-            .asker-info
-              .img-container
-                %img.img-circle
-
-              %p kareemgrant
-              %button.btn.pull-right vote
+      %ul.questions{"data-id" => "#{@track_show.track_id}"}
+        = render partial: 'question', collection: @track_show.questions
       %button.btn.btn-primary.pull-right Ask a question
 
 :javascript

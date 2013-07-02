@@ -1,0 +1,26 @@
+%li
+  .question-container
+    .question
+      %h3= question.body
+      %span.badge.badge-inverse 
+        #{question.vote_count} votes
+    .asker-info
+      .img-container
+        = image_tag question.user_image_url, :class => "img-circle"
+
+      %p #{question.user_nickname}
+
+      %button.btn.pull-right vote
+
+-# %li
+-#   .question-container
+-#     .question
+-#       %h3 Which refactoring technique do think is the most versatile?
+-#       %span.badge.badge-inverse 12 votes
+-#     .asker-info
+-#       .img-container
+-#         %img.img-circle
+
+-#       %p kareemgrant
+-#       %button.btn.pull-right vote
+
