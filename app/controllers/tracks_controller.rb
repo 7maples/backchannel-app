@@ -3,6 +3,7 @@ class TracksController < ApplicationController
 
   def show
     @track_show = TrackShow.new(params[:track_id], params[:conference])
+    gon.track_show = @track_show
   end
 
   private

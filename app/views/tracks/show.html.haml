@@ -1,30 +1,61 @@
-%h3 Welcome to the BackChannel for the #{@track_show.track['title']} track
-%br
-.row
-  .span6
-    %h4 Track Chat
-    %ul.chat{"data-id" => "#{@track_show.track['id']}"}
-      = render partial: 'message', collection: @track_show.messages
+%h3 #{@track_show.track['title']}'s backchannel
+%section
+  .row
+    .span5
+      %h3 Chat
+      %ul.chat{"data-id" => "#{@track_show.track_id}"}
+        = render partial: 'message', collection: @track_show.messages
 
-    %input.span5#body{:type => "text", :placeholder => "Type your message here"}
-    %button.btn#post Send
+      %input.span4#body{:type => "text", :placeholder => "Type your message here"}
+      %button.btn#post Send
 
+
+    .span6
+      %h3 Questions
+      %ul.questions
+        %li
+          .question-container
+            .question
+              %h3 Which refactoring technique do think is the most versatile?
+              %span.badge.badge-inverse 12 votes
+            .asker-info
+              .img-container
+                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+
+              %p kareemgrant
+              %button.btn.pull-right vote
+        %li
+          .question-container
+            .question
+              %h3 Which refactoring technique do think is the most versatile?
+              %span.badge.badge-inverse 12 votes
+            .asker-info
+              .img-container
+                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+
+              %p kareemgrant
+              %button.btn.pull-right vote
+      %button.btn.btn-primary.pull-right Ask a question
+              
 :javascript
   $(function(){
-    console.log("#{@track_show.users.to_json}")
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    client.subscribe("/tracks/#{@track_show.track['id']}", function (data) {
+    client.subscribe("/tracks/#{@track_show.track_id}", function (data) {
 
-      if ($.inArray(data.text.user_id, [])) {
-        $('.chat').append('<li>' + 'stub' + ' says: ' + data.text.body + '</li>')
+      var userIds = gon.track_show.user_ids,
+          users = gon.track_show.users, 
+          chatUserId = data.text.user_id;
+
+      if ($.inArray(chatUserId, userIds) !== -1) {
+        $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-            console.log(response);
-            $('.chat').append('<li>' + response.nickname + ' says: ' + data.text.body + '</li>')
+            console.log("making a get request");
+            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
           }
         })
       };
@@ -38,7 +69,7 @@
 
       $.ajax({
         type: "POST",
-        url:  "/#{@conference_slug}/#{@track_show.track['id']}/messages",
+        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/messages",
         data: {body: message},
         dataType: "json",
         success: function (response) {
