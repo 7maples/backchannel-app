@@ -9,6 +9,7 @@ gem 'faraday'
 gem 'haml-rails'
 gem 'message_fetcher', :git => 'https://github.com/kareemgrant/message-fetcher.git'
 gem 'conference_fetcher', :git => 'https://github.com/kareemgrant/conference-fetcher.git'
+gem 'question_fetcher', :git => 'https://github.com/7maples/question-fetcher'
 gem 'gon'
 
 group :assets do
