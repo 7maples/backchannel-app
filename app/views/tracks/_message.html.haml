@@ -1,5 +1,9 @@
 %li
-  = image_tag message.user_image_url, :class => "img-circle"
-  = message.user_nickname
-  says
-  = message.body
+  .chat-container
+    .img-container
+      = image_tag message.user_image_url, :class => "img-circle"
+    .message-container
+      %p #{message.user_nickname} says:
+      = message.body
+
+

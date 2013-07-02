@@ -1,19 +1,42 @@
 %h3 #{@track_show.track['title']}'s backchannel
-.row.rowadjust
-  .span12
-    %section
-      %ul.nav.nav-pills
-        %li.active
-          %a{:href => "#"} Chat
-        %li
-          %a{:href => "#"} Questions
-
+%section
+  .row
+    .span5
+      %h3 Chat
       %ul.chat{"data-id" => "#{@track_show.track_id}"}
         = render partial: 'message', collection: @track_show.messages
 
-    %input.span5#body{:type => "text", :placeholder => "Type your message here"}
-    %button.btn#post Send
+      %input.span4#body{:type => "text", :placeholder => "Type your message here"}
+      %button.btn#post Send
 
+
+    .span6
+      %h3 Questions
+      %ul.questions
+        %li
+          .question-container
+            .question
+              %h3 Which refactoring technique do think is the most versatile?
+              %span.badge.badge-inverse 12 votes
+            .asker-info
+              .img-container
+                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+
+              %p kareemgrant
+              %button.btn.pull-right vote
+        %li
+          .question-container
+            .question
+              %h3 Which refactoring technique do think is the most versatile?
+              %span.badge.badge-inverse 12 votes
+            .asker-info
+              .img-container
+                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+
+              %p kareemgrant
+              %button.btn.pull-right vote
+      %button.btn.btn-primary.pull-right Ask a question
+              
 :javascript
   $(function(){
     var client = new Faye.Client('http://localhost:9292/faye');
