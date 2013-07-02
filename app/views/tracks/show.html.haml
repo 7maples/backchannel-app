@@ -20,7 +20,7 @@
               %span.badge.badge-inverse 12 votes
             .asker-info
               .img-container
-                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+                %img.img-circle
 
               %p kareemgrant
               %button.btn.pull-right vote
@@ -31,31 +31,46 @@
               %span.badge.badge-inverse 12 votes
             .asker-info
               .img-container
-                %img.img-circle{"data-src"=>"assets/holder.png", :src => "assets/holder.png"}
+                %img.img-circle
 
               %p kareemgrant
               %button.btn.pull-right vote
       %button.btn.btn-primary.pull-right Ask a question
-              
+
 :javascript
+  if (typeof(Backchannel) == 'undefined') {
+    window.Backchannel = {};
+  }
+  Backchannel.clientUrl = "/tracks/#{@track_show.track_id}";
+
   $(function(){
+
+    var scrollHeight = $("ul.chat li .message-container").map(function() { return $(this).height() }).get().reduce(function(a,eh) { return a + eh }, 0);
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    client.subscribe("/tracks/#{@track_show.track_id}", function (data) {
+    $('ul.chat').height($('ul.questions').height())
+
+    client.subscribe(Backchannel.clientUrl, function (data) {
 
       var userIds = gon.track_show.user_ids,
           users = gon.track_show.users, 
           chatUserId = data.text.user_id;
 
       if ($.inArray(chatUserId, userIds) !== -1) {
+
         $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
+        $("ul.chat").scrollTop(scrollHeight + 6000)
+
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
+
             console.log("making a get request");
             $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
+            $("ul.chat").scrollTop(scrollHeight + 2000)
+
           }
         })
       };

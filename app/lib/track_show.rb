@@ -4,11 +4,11 @@ class Message < OpenStruct
   end
 
   def user_image_url
-    user.image_url
+    user && user.image_url
   end
 
   def user_nickname
-    user.nickname
+    user && user.nickname
   end
 end
 
