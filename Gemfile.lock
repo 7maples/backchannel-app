@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/7maples/question-fetcher
+  revision: b2e65a5d8883c01568a123fc6b6b1c0d68ac549b
+  specs:
+    question_fetcher (0.0.1)
+
+GIT
   remote: https://github.com/kareemgrant/conference-fetcher.git
   revision: 4ed1152da0044d246a2491073ca64b5d0b7294b5
   specs:
@@ -262,6 +268,7 @@ DEPENDENCIES
   omniauth-twitter
   pg
   pry
+  question_fetcher!
   rails (= 3.2.13)
   rspec-rails (~> 2.13.1)
   sass-rails (~> 3.2.3)
