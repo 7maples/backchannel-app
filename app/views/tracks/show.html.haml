@@ -94,9 +94,17 @@
       };
     });
 
+    var requireUser = function(intent){
+      if(!gon.user){
+        alert("You must be logged in to Twitter before " + intent);
+      }
+    };
+
     $("#create-question").click(function() {
       var $body = $("#question-body"),
           message = $body.val();
+
+      requireUser("asking a question");
 
       $body.val('');
 
@@ -117,6 +125,8 @@
     $(".vote").click(function() {
       var questionId = $(this).closest(".question-container").data("question-id");
 
+      requireUser("voting");
+
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote",
@@ -131,6 +141,8 @@
     $("#post").click(function() {
       var $body = $("#body"),
           message = $body.val();
+
+      requireUser("chatting");
 
       $body.val('');
 
