@@ -1,10 +1,6 @@
 class ConferencesController < ApplicationController
   before_filter :set_session
 
-  def index
-    render nothing: true
-  end
-
   def show
     @conference = ConferenceFetcher.get_conference(params[:conference])
     if @conference
