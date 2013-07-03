@@ -13,8 +13,8 @@
     .span6
       %h3 Questions
       %ul.questions{"data-id" => "#{@track_show.track_id}"}
-        = render partial: 'question', collection: @track_show.questions
-      %a.btn.btn-primary{:href=>"#questionModal", "role"=>"button", "data-toggle"=>"modal"} Ask a Question 
+      .hidden= @track_show.questions
+      %a.btn.btn-primary{:href=>"#questionModal", "role"=>"button", "data-toggle"=>"modal"} Ask a Question
 
       #questionModal.modal.hide.fade{"tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
         .modal-header
@@ -25,137 +25,150 @@
 
         .modal-footer
           %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
-          %button#create-question.btn.btn-primary{"data-dismiss"=>"modal"} Save changes
+          %button#create-question.btn.btn-primary{"data-dismiss"=>"modal"} Post Question
 
 :javascript
   if (typeof(Backchannel) == 'undefined') {
     window.Backchannel = {};
   }
+
   Backchannel.clientUrl = "/tracks/#{@track_show.track_id}";
 
   $(function(){
+    var scrollHeight = $("ul.chat li .message-container").map(function() {
+          return $(this).height() }).get().reduce(function(a,eh) { return a + eh }, 0),
+        client = new Faye.Client('http://localhost:9292/faye'),
+        questions = gon.track_show.questions || [],
+        users = gon.track_show.users || [],
+        userIds = gon.track_show.user_ids || [],
 
-    var scrollHeight = $("ul.chat li .message-container").map(function() { return $(this).height() }).get().reduce(function(a,eh) { return a + eh }, 0);
+        populate_questions = function () {
+          var values = new Array(),
+              $questions = $('.questions');
 
-    var client = new Faye.Client('http://localhost:9292/faye');
+          for (var key in questions) {
+            values.push(questions[key]);
+          }
 
+          values.sort(function (a, b) { return b.table.vote_count - a.table.vote_count })
+
+          $questions.html('');
+
+          $.each(values, function (index, question) {
+            $questions.append('<li> <div class="question-container" data-question-id="' + question.table.id + '"> <div class="question"><h3>' + question.table.body + '</h3><span class="badge badge-inverse">' + question.table.vote_count + ' votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + users[question.table.user.id].image_url + '"/></div> <p>' + users[question.table.user.id].nickname + '</p> <button class="btn pull-right vote">vote</button> </div> </div> </li>');
+            $("ul.questions").scrollTop(scrollHeight + 6000);
+          });
+
+          addVoteListener();
+        },
+
+        addQuestion = function (data) {
+          questions[data.text.id] = {table: {id: data.text.id, body: data.text.body, vote_count: data.text.vote_count, user: {id: data.text.user_id} } };
+          $("ul.questions").scrollTop(scrollHeight + 6000);
+        },
+
+        addVoteListener = function () {
+          $(".vote").click(function() {
+            var questionId = $(this).closest(".question-container").data("question-id");
+
+            requireUser("voting");
+
+            $.ajax({
+              type: "POST",
+              url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote"
+            });
+          });
+        },
+
+        addChat = function (data) {
+          $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>');
+          $("ul.chat").scrollTop(scrollHeight + 6000);
+        },
+
+        addUser = function (data) {
+          userIds.push(data.id);
+          users[data.id] = {nickname: data.nickname, image_url: data.image_url};
+        },
+
+        incrementVote = function (data) {
+          ++questions[data.text.id].table.vote_count;
+        },
+
+        requireUser = function(intent){
+          if (!gon.user) {
+            alert("You must be logged in to Twitter before " + intent);
+          }
+        };
+
+    populate_questions();
 
     client.subscribe(Backchannel.clientUrl + "/questions/vote", function (data) {
-      console.log(data);
-    })
-
+      incrementVote(data);
+      populate_questions();
+    });
 
     client.subscribe(Backchannel.clientUrl, function (data) {
-
-      var userIds = gon.track_show.user_ids,
-          users = gon.track_show.users, 
-          chatUserId = data.text.user_id;
-
-      if ($.inArray(chatUserId, userIds) !== -1) {
-
-        $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
-        $("ul.chat").scrollTop(scrollHeight + 6000)
-
+      if ($.inArray(data.text.user_id, userIds) !== -1) {
+        addChat(data);
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-
-            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
-            $("ul.chat").scrollTop(scrollHeight + 2000)
-
+            addUser(response);
+            addChat(data);
           }
         })
       };
     });
 
     client.subscribe(Backchannel.clientUrl + "/questions", function (data) {
-
-      var userIds = gon.track_show.user_ids,
-          users = gon.track_show.users, 
-          chatUserId = data.text.user_id;
-
-      if ($.inArray(chatUserId, userIds) !== -1) {
-
-        $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + users[data.text.user_id].image_url + '"/></div> <p>' + users[data.text.user_id].nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
-        $("ul.questions").scrollTop(scrollHeight + 6000)
-
+      if ($.inArray(data.text.user_id, userIds) !== -1) {
+        addQuestion(data);
+        populate_questions();
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-            $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + response.image_url + '"/></div> <p>' + response.nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
-            $("ul.questions").scrollTop(scrollHeight + 6000)
-
+            addUser(response)
+            addQuestion(data);
+            populate_questions();
           }
         })
       };
     });
 
-    var requireUser = function(intent){
-      if(!gon.user){
-        alert("You must be logged in to Twitter before " + intent);
-      }
-    };
-
     $("#create-question").click(function() {
       var $body = $("#question-body"),
           message = $body.val();
 
-      requireUser("asking a question");
-
       $body.val('');
 
+      requireUser("asking a question");
 
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions",
         data: {body: message},
-        dataType: "json",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
+        dataType: "json"
       });
-
-    });
-
-    $(".vote").click(function() {
-      var questionId = $(this).closest(".question-container").data("question-id");
-
-      requireUser("voting");
-
-      $.ajax({
-        type: "POST",
-        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
-      });
-
     });
 
     $("#post").click(function() {
       var $body = $("#body"),
           message = $body.val();
 
-      requireUser("chatting");
-
       $body.val('');
+
+      requireUser("chatting");
 
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/messages",
         data: {body: message},
-        dataType: "json",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
+        dataType: "json"
       });
-
     });
+
   });
