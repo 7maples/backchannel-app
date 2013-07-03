@@ -14,7 +14,7 @@
       %h3 Questions
       %ul.questions{"data-id" => "#{@track_show.track_id}"}
         = render partial: 'question', collection: @track_show.questions
-      %a.btn.btn-primary{:href=>"#questionModal", "role"=>"button", "data-toggle"=>"modal"} Ask a Question 
+      %a.btn.btn-primary{:href=>"#questionModal", "role"=>"button", "data-toggle"=>"modal"} Ask a Question
 
       #questionModal.modal.hide.fade{"tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
         .modal-header
@@ -25,77 +25,66 @@
 
         .modal-footer
           %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
-          %button#create-question.btn.btn-primary{"data-dismiss"=>"modal"} Save changes
+          %button#create-question.btn.btn-primary{"data-dismiss"=>"modal"} Post Question
 
 :javascript
   if (typeof(Backchannel) == 'undefined') {
     window.Backchannel = {};
   }
+
   Backchannel.clientUrl = "/tracks/#{@track_show.track_id}";
 
   $(function(){
-
     var scrollHeight = $("ul.chat li .message-container").map(function() { return $(this).height() }).get().reduce(function(a,eh) { return a + eh }, 0);
 
     var client = new Faye.Client('http://localhost:9292/faye');
 
-
     client.subscribe(Backchannel.clientUrl + "/questions/vote", function (data) {
       console.log(data);
-    })
-
+    });
 
     client.subscribe(Backchannel.clientUrl, function (data) {
-
       var userIds = gon.track_show.user_ids,
-          users = gon.track_show.users, 
+          users = gon.track_show.users,
           chatUserId = data.text.user_id;
 
       if ($.inArray(chatUserId, userIds) !== -1) {
-
-        $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>')
-        $("ul.chat").scrollTop(scrollHeight + 6000)
-
+        $('.chat').append('<li>' + "<img class='img-circle', src='"+ users[data.text.user_id].image_url + "'/>" + ' ' + users[data.text.user_id].nickname + ' says: ' + data.text.body + '</li>');
+        $("ul.chat").scrollTop(scrollHeight + 6000);
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-
-            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
-            $("ul.chat").scrollTop(scrollHeight + 2000)
-
+            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>');
+            $("ul.chat").scrollTop(scrollHeight + 2000);
           }
         })
       };
     });
 
     client.subscribe(Backchannel.clientUrl + "/questions", function (data) {
-
       var userIds = gon.track_show.user_ids,
-          users = gon.track_show.users, 
+          users = gon.track_show.users,
           chatUserId = data.text.user_id;
 
       if ($.inArray(chatUserId, userIds) !== -1) {
-
-        $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + users[data.text.user_id].image_url + '"/></div> <p>' + users[data.text.user_id].nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
-        $("ul.questions").scrollTop(scrollHeight + 6000)
-
+        $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + ' votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + users[data.text.user_id].image_url + '"/></div> <p>' + users[data.text.user_id].nickname + '</p> <button class="btn pull-right vote">vote</button> </div> </div> </li>');
+        $("ul.questions").scrollTop(scrollHeight + 6000);
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-            $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + response.image_url + '"/></div> <p>' + response.nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
-            $("ul.questions").scrollTop(scrollHeight + 6000)
-
+            $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + response.image_url + '"/></div> <p>' + response.nickname + '</p> <button class="btn pull-right vote"> vote</button> </div> </div> </li>');
+            $("ul.questions").scrollTop(scrollHeight + 6000);
           }
         })
       };
     });
 
     var requireUser = function(intent){
-      if(!gon.user){
+      if (!gon.user) {
         alert("You must be logged in to Twitter before " + intent);
       }
     };
@@ -104,22 +93,16 @@
       var $body = $("#question-body"),
           message = $body.val();
 
-      requireUser("asking a question");
-
       $body.val('');
 
+      requireUser("asking a question");
 
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions",
         data: {body: message},
-        dataType: "json",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
+        dataType: "json"
       });
-
     });
 
     $(".vote").click(function() {
@@ -129,33 +112,24 @@
 
       $.ajax({
         type: "POST",
-        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
+        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote"
       });
-
     });
 
     $("#post").click(function() {
       var $body = $("#body"),
           message = $body.val();
 
-      requireUser("chatting");
-
       $body.val('');
+
+      requireUser("chatting");
 
       $.ajax({
         type: "POST",
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/messages",
         data: {body: message},
-        dataType: "json",
-        success: function (response) {
-        },
-        error: function (error) {
-        }
+        dataType: "json"
       });
-
     });
+
   });
