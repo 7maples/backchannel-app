@@ -1,6 +1,6 @@
 %h3 #{@track_show.track['title']}'s backchannel
 %section
-  .row
+  .row#track-contents
     .span5
       %h3 Chat
       %ul.chat{"data-id" => "#{@track_show.track_id}"}
@@ -14,10 +14,9 @@
       %h3 Questions
       %ul.questions{"data-id" => "#{@track_show.track_id}"}
         = render partial: 'question', collection: @track_show.questions
-      -# %button.#new-question.btn.btn-primary.pull-right Ask a question
-      <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+      %a.btn.btn-primary{:href=>"#questionModal", "role"=>"button", "data-toggle"=>"modal"} Ask a Question 
 
-      #myModal.modal.hide.fade{"tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
+      #questionModal.modal.hide.fade{"tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
         .modal-header
           %button.close{:type=>"button", "data-dismiss"=>"modal", "aria-hidden"=>"true"} ×
           %h3#myModalLabel Add Question
@@ -26,7 +25,7 @@
 
         .modal-footer
           %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
-          %button#create-question.btn.btn-primary Save changes
+          %button#create-question.btn.btn-primary{"data-dismiss"=>"modal"} Save changes
 
 :javascript
   if (typeof(Backchannel) == 'undefined') {
@@ -76,16 +75,15 @@
       if ($.inArray(chatUserId, userIds) !== -1) {
 
         $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + users[data.text.user_id].image_url + '"/></div> <p>' + users[data.text.user_id].nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
-        $("ul.chat").scrollTop(scrollHeight + 6000)
+        $("ul.questions").scrollTop(scrollHeight + 6000)
 
       } else {
         $.ajax({
           type: 'GET',
           url: '/users/' + data.text.user_id,
           success: function (response) {
-
-            $('.chat').append('<li>' + "<img class='img-circle', src='"+ response.image_url + "'/>" + ' ' + response.nickname + ' says: ' + data.text.body + '</li>')
-            $("ul.chat").scrollTop(scrollHeight + 2000)
+            $('.questions').append('<li> <div class="question-container"> <div class="question"><h3>' + data.text.body + '</h3><span class="badge badge-inverse">' + data.text.vote_count + 'votes </span> </div> <div class="asker-info"> <div class="img-container"> <img class="img-circle" src="' + response.image_url + '"/></div> <p>' + response.nickname + '</p> <button class="btn pull-right">vote</button> </div> </div> </li>')
+            $("ul.questions").scrollTop(scrollHeight + 6000)
 
           }
         })
@@ -97,6 +95,7 @@
           message = $body.val();
 
       $body.val('');
+
 
       $.ajax({
         type: "POST",
