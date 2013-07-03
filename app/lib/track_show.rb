@@ -47,9 +47,10 @@ class TrackShow
   end
 
   def questions
-    @questions ||= question_data.map do |question|
-      QuestionData.new(body: question['body'], id: question["id"], user: users[question['user_id']], vote_count: question["vote_count"])
-    end.sort_by {|question| -question.vote_count}
+    @questions ||= question_data.inject({}) do |memo, question|
+      memo[question["id"]] = QuestionData.new(body: question['body'], id: question["id"], user: users[question['user_id']], vote_count: question["vote_count"])
+      memo
+    end
   end
 
   def track
