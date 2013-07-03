@@ -8,6 +8,7 @@
   %ul
     %li
       %a.current{:href => "#"} Day 1
+
     %li
       %a Day 2
 
@@ -32,7 +33,7 @@
         - if session = sessions.detect { |s| s['track_id'] == track['id'] }
           .slot.card
             %h4
-              %a{:href => "#"}= track['title']
+              %a{:href => "/#{@conference["slug"]}/#{track['id']}"}= track['title']
             %h5= session['title']
             %p= session['speaker']
         - else
@@ -41,23 +42,3 @@
             %h4 Nothing Scheduled
             %h3
 
-/-# .row
-/-#   .span8
-/-#     - @conference["tracks"].each do |track|
-/-#       %h4
-/-#         =link_to track["title"], conference_track_path(/@conference["slug"], track["id"])
-/
-/-#       %table.table-bordered.table-striped
-/-#         %thead
-/-#           %tr
-/-#             %th.span3 Session
-/-#             %th.span2 Details
-/-#             %th.span2 Location
-/-#         %tbody
-/-#           - track["sessions"].each do |session|
-/-#             %tr
-/-#               %td= session["title"]
-/-#               %td= session["speaker"]
-/-#               %td= session["location"]
-/
-/

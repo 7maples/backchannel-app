@@ -9,6 +9,7 @@ gem 'faraday'
 gem 'haml-rails'
 gem 'message_fetcher', :git => 'https://github.com/kareemgrant/message-fetcher.git'
 gem 'conference_fetcher', :git => 'https://github.com/kareemgrant/conference-fetcher.git'
+gem 'question_fetcher', :git => 'https://github.com/7maples/question-fetcher'
 gem 'gon'
 
 group :assets do
@@ -25,8 +26,8 @@ group :development, :test do
   gem 'capybara', '~>2.1.0'
   gem 'selenium-webdriver', '~>2.32.1'
   gem 'hirb'
-  gem 'better_errors'
-      gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'sqlite3'
   gem 'dotenv-rails'
   gem 'launchy'
@@ -43,5 +44,6 @@ end
 
 group :test do
   gem 'webmock'
+  gem 'database_cleaner'
 end
 

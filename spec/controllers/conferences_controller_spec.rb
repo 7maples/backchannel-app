@@ -7,8 +7,8 @@ describe ConferencesController do
 
       it 'assigns the conference correctly' do
         VCR.use_cassette('GET conf#show, conf exists') do
-          get :show, { :conference => 'ruby-conf-2011' }
-          expect(assigns(:conference)['name']).to eq 'Ruby Conference 2011'
+          get :show, { :conference => 'ruby-conf-2013' }
+          expect(assigns(:conference)['name']).to eq 'Ruby Conference 2013'
         end
       end
 

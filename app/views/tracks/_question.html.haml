@@ -1,0 +1,13 @@
+%li
+  .question-container{"data-question-id"=>"#{question.id}"}
+    .question
+      %h3= question.body
+      %span.badge.badge-inverse 
+        #{question.vote_count} votes
+    .asker-info
+      .img-container
+        = image_tag question.user_image_url, :class => "img-circle"
+
+      %p #{question.user_nickname}
+
+      %button.vote.btn.pull-right vote
