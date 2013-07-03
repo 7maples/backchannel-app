@@ -1,6 +1,7 @@
 body {
   background: url("bg.png");
   padding-top: 80px;
+  padding-bottom: 100px;
 }
 
 @import "bootstrap-responsive";
@@ -62,6 +63,7 @@ body {
 
 .rowadjust {
   margin-left: 0;
+  padding-bottom: 20px;
 }
 .timeslot {
   float: left;
