@@ -7,15 +7,15 @@
 .days
   %ul
     %li
-      %a.current{:href => "#"}
+      %a.current{:href => "#"} Day 1
     %li
-      %a{:href => "#"} Tue 4/30
+      %a Day 2
 
     %li
-      %a{:href => "#"} Wed 5/1
+      %a Day 3
 
     %li
-      %a{:href => "#"} Thu 5/2
+      %a Day 4
 
 - @sessions_by_start_time.each do |start_time, sessions|
   - if start_time == nil
@@ -38,67 +38,9 @@
         - else
           .slot.card
             %h4= track['title']
-            %h5 Nothing Scheduled
+            %h4 Nothing Scheduled
             %h3
 
-          / .slot.card
-          /   %h4
-          /     %a{:href => "#"} Beginner
-          /   %h5 Blogger Tutorial
-          /   %p Franklin Weber
-
-          / .slot.card
-          /   %h4
-          /     %a{:href => "#"} Beginner
-          /   %h5 Blogger Tutorial
-          /   %p Franklin Weber
-
-  / .row.rowadjust
-  /   .span12
-
-  /   .timeslot
-  /     %h3 session
-  /     %p 11:30am - 12:10pm
-
-  /   .talkgroup
-  /     .slot.card
-  /       %h4
-  /         %a{:href => "#"} Beginner
-  /       %h5 Blogger Tutorial
-  /       %p Franklin Weber
-
-/
-/.row.rowadjust
-/  .span12
-/
-/  .timeslot
-/    %h3 session
-/    %p 11:30am - 12:10pm
-/
-/  .talkgroup
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} TDD
-/      %h5 RSpec Best Practices
-/      %p Franklin Weber
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Beginner
-/      %h5 Blogger Tutorial
-/      %p Franklin Weber
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Refactoring
-/      %h5 The Myth of Skinny Controllers and Fat Models
-/      %p Katrina Owen
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Peformance
-/      %h5 Engine Light for Your Rails App
-/      %p Someone from New Relic
 /-# .row
 /-#   .span8
 /-#     - @conference["tracks"].each do |track|
