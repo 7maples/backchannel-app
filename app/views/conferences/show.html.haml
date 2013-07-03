@@ -7,7 +7,7 @@
 .days
   %ul
     %li
-      %a.current{:href => "#"} Mon 4/29
+      %a.current{:href => "#"}
     %li
       %a{:href => "#"} Tue 4/30
 
@@ -18,12 +18,14 @@
       %a{:href => "#"} Thu 5/2
 
 - @sessions_by_start_time.each do |start_time, sessions|
+  - if start_time == nil
+    - start_time = '2013-07-01 09:00:00 -0700'
   .row.rowadjust
     .span12
 
     .timeslot
       %h3 session
-      %p= start_time
+      %p= Time.parse(start_time).strftime('%l:%M')
 
     .talkgroup
       - @tracks.each do |track|
@@ -33,6 +35,11 @@
               %a{:href => "#"}= track['title']
             %h5= session['title']
             %p= session['speaker']
+        - else
+          .slot.card
+            %h4= track['title']
+            %h5 Nothing Scheduled
+            %h3
 
           / .slot.card
           /   %h4
