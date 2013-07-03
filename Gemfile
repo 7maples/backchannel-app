@@ -26,8 +26,8 @@ group :development, :test do
   gem 'capybara', '~>2.1.0'
   gem 'selenium-webdriver', '~>2.32.1'
   gem 'hirb'
-  # gem 'better_errors'
-  # gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'sqlite3'
   gem 'dotenv-rails'
   gem 'launchy'
@@ -36,6 +36,9 @@ group :development, :test do
   gem 'pry'
   gem 'guard'
   gem "factory_girl_rails", "~> 4.0"
+end
+
+group :test do
   gem 'vcr'
 end
 
