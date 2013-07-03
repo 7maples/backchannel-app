@@ -1,6 +1,6 @@
 BackchannelApp::Application.routes.draw do
 
-  root to: 'conferences#index'
+  root to: redirect('/goruco-2013')
 
   get 'auth/twitter/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

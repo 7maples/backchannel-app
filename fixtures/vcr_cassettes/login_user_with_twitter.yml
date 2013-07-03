@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3001/conferences/ruby-conf-2011
+    uri: http://localhost:3001/conferences/ruby-conf-2013
     body:
       encoding: US-ASCII
       string: ''
@@ -21,31 +21,80 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - ! '"0a60fba41e41c98b9ffef0e9551b7f4c"'
+      - ! '"d6dfc9ba54702e81d67fbd5ce3f7d09d"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 9cc94651eed53b7966cdd2d339a10700
+      - f4019613c4f6bc929181a6f6062ce003
       X-Runtime:
-      - '0.005251'
+      - '0.014393'
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.3/2013-02-22)
       Date:
-      - Wed, 03 Jul 2013 04:32:06 GMT
+      - Wed, 03 Jul 2013 05:19:26 GMT
       Content-Length:
-      - '443'
+      - '5599'
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"created_at":"2013-06-20T00:49:26Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
-        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-20T00:49:26Z","tracks":[{"conference_id":2,"created_at":"2013-06-20T00:49:26Z","description":"Presentations
-        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-20T00:49:26Z","sessions":[]}]}'
+      string: ! '{"created_at":"2013-07-03T05:02:30Z","end_date":"2013-11-10T23:00:00Z","id":2,"location":null,"name":"Ruby
+        Conference 2013","slug":"ruby-conf-2013","start_date":"2013-11-08T06:00:00Z","updated_at":"2013-07-03T05:02:30Z","tracks":[{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Talks
+        about how to clean up your code","id":5,"location":"Banquet Hall","title":"Refactoring","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your classes leaner","end_time":"2013-11-08T10:00:00Z","id":5,"location":"Room
+        413","speaker":"Katrina Owen","start_time":"2013-11-08T09:00:00Z","title":"Refactoring
+        Classes","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your methods clear","end_time":"2013-11-08T11:00:00Z","id":6,"location":"Room
+        413","speaker":"Frank Weber","start_time":"2013-11-08T10:00:00Z","title":"Refactoring
+        Methods","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Keep
+        your controllers concise","end_time":"2013-11-08T12:00:00Z","id":7,"location":"Room
+        413","speaker":"TBD","start_time":"2013-11-08T11:00:00Z","title":"Refactoring
+        Controllers","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your models clear and readable","end_time":"2013-11-08T15:00:00Z","id":8,"location":"Room
+        413","speaker":"Aaron Patterson","start_time":"2013-11-08T14:00:00Z","title":"Refactoring
+        Models","track_id":5,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Talks
+        about how to write efficient tests","id":6,"location":"Auditorium","title":"Testing","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to start testing","end_time":"2013-11-08T10:00:00Z","id":17,"location":"Room
+        143","speaker":"Katrina Owen","start_time":"2013-11-08T09:00:00Z","title":"Testing
+        Basics","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Some
+        little-known techniques for RSpec","end_time":"2013-11-08T11:00:00Z","id":18,"location":"Room
+        142","speaker":"Mike Gehard","start_time":"2013-11-08T10:00:00Z","title":"Testing
+        Tricks","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to test the nooks and crannies","end_time":"2013-11-08T11:00:00Z","id":19,"location":"Room
+        139","speaker":"TBD","start_time":"2013-11-08T10:00:00Z","title":"Testing
+        Everything","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"What
+        not to test","end_time":"2013-11-08T15:00:00Z","id":20,"location":"Room 143","speaker":"DHH","start_time":"2013-11-08T14:00:00Z","title":"Testing
+        Pitfalls","track_id":6,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Presentations
+        about creating APIs","id":7,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"APIs
+        for Dummies","end_time":"2013-11-08T10:00:00Z","id":29,"location":"Room 232","speaker":"Jeff
+        Casimir","start_time":"2013-11-08T09:00:00Z","title":"Starting APIs","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Making
+        APIs that everyone can use","end_time":"2013-11-08T11:00:00Z","id":30,"location":"Room
+        223","speaker":"Mike Gehard","start_time":"2013-11-08T10:00:00Z","title":"APIs
+        for Everyone","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Using
+        APIs to condense your app","end_time":"2013-11-08T12:00:00Z","id":31,"location":"Room
+        117","speaker":"TBD","start_time":"2013-11-08T11:00:00Z","title":"APIs as
+        Services","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"APIs
+        can do it all","end_time":"2013-11-08T12:00:00Z","id":32,"location":"Room
+        231","speaker":"Steve Klabnik","start_time":"2013-11-08T11:00:00Z","title":"Using
+        APIs for Everything","track_id":7,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Ruby
+        veterans available for live code reviews","id":8,"location":"Lobby","title":"Code
+        Review","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to learn from other people''s code","end_time":"2013-11-08T10:00:00Z","id":41,"location":"Auditorium","speaker":"Frank
+        Webber","start_time":"2013-11-08T09:00:00Z","title":"Studying Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Finding
+        mentors","end_time":"2013-11-08T11:00:00Z","id":42,"location":"Room 223","speaker":"Dave
+        Thomas","start_time":"2013-11-08T10:00:00Z","title":"Letting Others Review
+        Your Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Looking
+        at your own work","end_time":"2013-11-08T12:00:00Z","id":43,"location":"Room
+        117","speaker":"Jeff Casimir","start_time":"2013-11-08T11:00:00Z","title":"Review
+        Your Own Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Putting
+        your code out there","end_time":"2013-11-08T15:00:00Z","id":44,"location":"Room
+        231","speaker":"Steve Klabnik","start_time":"2013-11-08T14:00:00Z","title":"Group
+        Code Reviews","track_id":8,"updated_at":"2013-07-03T05:02:30Z"}]}]}'
     http_version: 
-  recorded_at: Wed, 03 Jul 2013 04:32:06 GMT
+  recorded_at: Wed, 03 Jul 2013 05:19:26 GMT
 - request:
     method: get
-    uri: http://localhost:3001/conferences/ruby-conf-2011
+    uri: http://localhost:3001/conferences/ruby-conf-2013
     body:
       encoding: US-ASCII
       string: ''
@@ -64,26 +113,75 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - ! '"0a60fba41e41c98b9ffef0e9551b7f4c"'
+      - ! '"d6dfc9ba54702e81d67fbd5ce3f7d09d"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 1bceff04178050bb18d0cc838014ae0c
+      - a61ccbdb6c4ec688bbb7f6bea7d6168e
       X-Runtime:
-      - '0.007776'
+      - '0.018005'
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.3/2013-02-22)
       Date:
-      - Wed, 03 Jul 2013 04:32:06 GMT
+      - Wed, 03 Jul 2013 05:19:26 GMT
       Content-Length:
-      - '443'
+      - '5599'
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"created_at":"2013-06-20T00:49:26Z","end_date":"2011-02-05T00:00:00Z","id":2,"location":null,"name":"Ruby
-        Conference 2011","slug":"ruby-conf-2011","start_date":"2011-02-03T00:00:00Z","updated_at":"2013-06-20T00:49:26Z","tracks":[{"conference_id":2,"created_at":"2013-06-20T00:49:26Z","description":"Presentations
-        about creating APIs","id":3,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-06-20T00:49:26Z","sessions":[]}]}'
+      string: ! '{"created_at":"2013-07-03T05:02:30Z","end_date":"2013-11-10T23:00:00Z","id":2,"location":null,"name":"Ruby
+        Conference 2013","slug":"ruby-conf-2013","start_date":"2013-11-08T06:00:00Z","updated_at":"2013-07-03T05:02:30Z","tracks":[{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Talks
+        about how to clean up your code","id":5,"location":"Banquet Hall","title":"Refactoring","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your classes leaner","end_time":"2013-11-08T10:00:00Z","id":5,"location":"Room
+        413","speaker":"Katrina Owen","start_time":"2013-11-08T09:00:00Z","title":"Refactoring
+        Classes","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your methods clear","end_time":"2013-11-08T11:00:00Z","id":6,"location":"Room
+        413","speaker":"Frank Weber","start_time":"2013-11-08T10:00:00Z","title":"Refactoring
+        Methods","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Keep
+        your controllers concise","end_time":"2013-11-08T12:00:00Z","id":7,"location":"Room
+        413","speaker":"TBD","start_time":"2013-11-08T11:00:00Z","title":"Refactoring
+        Controllers","track_id":5,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Make
+        your models clear and readable","end_time":"2013-11-08T15:00:00Z","id":8,"location":"Room
+        413","speaker":"Aaron Patterson","start_time":"2013-11-08T14:00:00Z","title":"Refactoring
+        Models","track_id":5,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Talks
+        about how to write efficient tests","id":6,"location":"Auditorium","title":"Testing","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to start testing","end_time":"2013-11-08T10:00:00Z","id":17,"location":"Room
+        143","speaker":"Katrina Owen","start_time":"2013-11-08T09:00:00Z","title":"Testing
+        Basics","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Some
+        little-known techniques for RSpec","end_time":"2013-11-08T11:00:00Z","id":18,"location":"Room
+        142","speaker":"Mike Gehard","start_time":"2013-11-08T10:00:00Z","title":"Testing
+        Tricks","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to test the nooks and crannies","end_time":"2013-11-08T11:00:00Z","id":19,"location":"Room
+        139","speaker":"TBD","start_time":"2013-11-08T10:00:00Z","title":"Testing
+        Everything","track_id":6,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"What
+        not to test","end_time":"2013-11-08T15:00:00Z","id":20,"location":"Room 143","speaker":"DHH","start_time":"2013-11-08T14:00:00Z","title":"Testing
+        Pitfalls","track_id":6,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Presentations
+        about creating APIs","id":7,"location":"Conference Room: Oak","title":"APIs","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"APIs
+        for Dummies","end_time":"2013-11-08T10:00:00Z","id":29,"location":"Room 232","speaker":"Jeff
+        Casimir","start_time":"2013-11-08T09:00:00Z","title":"Starting APIs","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Making
+        APIs that everyone can use","end_time":"2013-11-08T11:00:00Z","id":30,"location":"Room
+        223","speaker":"Mike Gehard","start_time":"2013-11-08T10:00:00Z","title":"APIs
+        for Everyone","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Using
+        APIs to condense your app","end_time":"2013-11-08T12:00:00Z","id":31,"location":"Room
+        117","speaker":"TBD","start_time":"2013-11-08T11:00:00Z","title":"APIs as
+        Services","track_id":7,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"APIs
+        can do it all","end_time":"2013-11-08T12:00:00Z","id":32,"location":"Room
+        231","speaker":"Steve Klabnik","start_time":"2013-11-08T11:00:00Z","title":"Using
+        APIs for Everything","track_id":7,"updated_at":"2013-07-03T05:02:30Z"}]},{"conference_id":2,"created_at":"2013-07-03T05:02:30Z","description":"Ruby
+        veterans available for live code reviews","id":8,"location":"Lobby","title":"Code
+        Review","updated_at":"2013-07-03T05:02:30Z","sessions":[{"created_at":"2013-07-03T05:02:30Z","description":"How
+        to learn from other people''s code","end_time":"2013-11-08T10:00:00Z","id":41,"location":"Auditorium","speaker":"Frank
+        Webber","start_time":"2013-11-08T09:00:00Z","title":"Studying Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Finding
+        mentors","end_time":"2013-11-08T11:00:00Z","id":42,"location":"Room 223","speaker":"Dave
+        Thomas","start_time":"2013-11-08T10:00:00Z","title":"Letting Others Review
+        Your Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Looking
+        at your own work","end_time":"2013-11-08T12:00:00Z","id":43,"location":"Room
+        117","speaker":"Jeff Casimir","start_time":"2013-11-08T11:00:00Z","title":"Review
+        Your Own Code","track_id":8,"updated_at":"2013-07-03T05:02:30Z"},{"created_at":"2013-07-03T05:02:30Z","description":"Putting
+        your code out there","end_time":"2013-11-08T15:00:00Z","id":44,"location":"Room
+        231","speaker":"Steve Klabnik","start_time":"2013-11-08T14:00:00Z","title":"Group
+        Code Reviews","track_id":8,"updated_at":"2013-07-03T05:02:30Z"}]}]}'
     http_version: 
-  recorded_at: Wed, 03 Jul 2013 04:32:06 GMT
+  recorded_at: Wed, 03 Jul 2013 05:19:26 GMT
 recorded_with: VCR 2.5.0

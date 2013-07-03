@@ -7,7 +7,7 @@
 .days
   %ul
     %li
-      %a.current{:href => "#"}
+      %a.current{:href => "#"} Mon 4/29
     %li
       %a{:href => "#"} Tue 4/30
 
@@ -32,7 +32,7 @@
         - if session = sessions.detect { |s| s['track_id'] == track['id'] }
           .slot.card
             %h4
-              %a{:href => "#"}= track['title']
+              %a{:href => "/#{@conference["slug"]}/#{track['id']}"}= track['title']
             %h5= session['title']
             %p= session['speaker']
         - else
@@ -40,82 +40,3 @@
             %h4= track['title']
             %h5 Nothing Scheduled
             %h3
-
-          / .slot.card
-          /   %h4
-          /     %a{:href => "#"} Beginner
-          /   %h5 Blogger Tutorial
-          /   %p Franklin Weber
-
-          / .slot.card
-          /   %h4
-          /     %a{:href => "#"} Beginner
-          /   %h5 Blogger Tutorial
-          /   %p Franklin Weber
-
-  / .row.rowadjust
-  /   .span12
-
-  /   .timeslot
-  /     %h3 session
-  /     %p 11:30am - 12:10pm
-
-  /   .talkgroup
-  /     .slot.card
-  /       %h4
-  /         %a{:href => "#"} Beginner
-  /       %h5 Blogger Tutorial
-  /       %p Franklin Weber
-
-/
-/.row.rowadjust
-/  .span12
-/
-/  .timeslot
-/    %h3 session
-/    %p 11:30am - 12:10pm
-/
-/  .talkgroup
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} TDD
-/      %h5 RSpec Best Practices
-/      %p Franklin Weber
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Beginner
-/      %h5 Blogger Tutorial
-/      %p Franklin Weber
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Refactoring
-/      %h5 The Myth of Skinny Controllers and Fat Models
-/      %p Katrina Owen
-/
-/    .slot.card
-/      %h4
-/        %a{:href => "#"} Peformance
-/      %h5 Engine Light for Your Rails App
-/      %p Someone from New Relic
-/-# .row
-/-#   .span8
-/-#     - @conference["tracks"].each do |track|
-/-#       %h4
-/-#         =link_to track["title"], conference_track_path(/@conference["slug"], track["id"])
-/
-/-#       %table.table-bordered.table-striped
-/-#         %thead
-/-#           %tr
-/-#             %th.span3 Session
-/-#             %th.span2 Details
-/-#             %th.span2 Location
-/-#         %tbody
-/-#           - track["sessions"].each do |session|
-/-#             %tr
-/-#               %td= session["title"]
-/-#               %td= session["speaker"]
-/-#               %td= session["location"]
-/
-/
