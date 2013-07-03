@@ -9,4 +9,9 @@ class QuestionsController < ApplicationController
       render nothing: true, status: 404
     end
   end
+
+  def vote
+    QuestionFetcher.vote(params.merge(user_id: current_user.id))
+    render nothing: true
+  end
 end

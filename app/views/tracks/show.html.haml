@@ -39,7 +39,11 @@
 
     var client = new Faye.Client('http://localhost:9292/faye');
 
-    $('ul.chat').height($('ul.questions').height())
+
+    client.subscribe(Backchannel.clientUrl + "/questions/vote", function (data) {
+      console.log(data);
+    })
+
 
     client.subscribe(Backchannel.clientUrl, function (data) {
 
@@ -102,6 +106,20 @@
         url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions",
         data: {body: message},
         dataType: "json",
+        success: function (response) {
+        },
+        error: function (error) {
+        }
+      });
+
+    });
+
+    $(".vote").click(function() {
+      var questionId = $(this).closest(".question-container").data("question-id");
+
+      $.ajax({
+        type: "POST",
+        url:  "/#{@track_show.conference_slug}/#{@track_show.track_id}/questions/" + questionId + "/vote",
         success: function (response) {
         },
         error: function (error) {

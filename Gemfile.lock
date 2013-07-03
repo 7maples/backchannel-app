@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/7maples/question-fetcher
-  revision: b2e65a5d8883c01568a123fc6b6b1c0d68ac549b
+  revision: 7a3f20f0710e8fe975c626bdea38f1280e3b5ecb
   specs:
-    question_fetcher (0.0.1)
+    question_fetcher (0.0.2)
 
 GIT
   remote: https://github.com/kareemgrant/conference-fetcher.git

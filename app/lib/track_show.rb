@@ -48,8 +48,8 @@ class TrackShow
 
   def questions
     @questions ||= question_data.map do |question|
-      QuestionData.new(body: question['body'], user: users[question['user_id']])
-    end
+      QuestionData.new(body: question['body'], id: question["id"], user: users[question['user_id']], vote_count: question["vote_count"])
+    end.sort_by {|question| -question.vote_count}
   end
 
   def track

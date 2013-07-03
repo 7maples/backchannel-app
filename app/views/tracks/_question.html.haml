@@ -1,5 +1,5 @@
 %li
-  .question-container
+  .question-container{"data-question-id"=>"#{question.id}"}
     .question
       %h3= question.body
       %span.badge.badge-inverse 
@@ -10,4 +10,4 @@
 
       %p #{question.user_nickname}
 
-      %button.btn.pull-right vote
+      %button.vote.btn.pull-right vote
