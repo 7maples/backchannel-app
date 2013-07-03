@@ -24,6 +24,7 @@ class QuestionData < OpenStruct
   def user_nickname
     user && user.nickname
   end
+
 end
 
 class TrackShow

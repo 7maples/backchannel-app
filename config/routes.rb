@@ -11,4 +11,5 @@ BackchannelApp::Application.routes.draw do
   get '/:conference', to: 'conferences#show', as: 'conference'
   get '/:conference/:track_id', to: 'tracks#show', as: 'conference_track'
   post '/:conference/:track_id/messages', to: 'messages#create', as: 'track_messages'
+  post '/:conference/:track_id/questions', to: 'questions#create', as: 'track_questions'
 end
